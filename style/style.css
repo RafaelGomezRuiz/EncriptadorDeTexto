@@ -1,17 +1,19 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: white;
 }
-:root{
-    --primary : #522258;
-    --secondary : #9c3061;
-    --complement1 : #c63c51;
-    --complement2 : #d95f59;
+
+:root {
+    --primary: #522258;
+    --secondary: #9c3061;
+    --complement1: #c63c51;
+    --complement2: #d95f59;
+    --border-radius: 10px;
 }
 
-header{
+header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,13 +22,13 @@ header{
     color: white;
 }
 
-body{
+body {
     background-color: var(--primary);
-    width: 400px;
-    margin:  0 auto;
+    margin: 0 auto;
+    padding: 10px;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,50 +36,118 @@ body{
     gap: 20px;
 }
 
-.container-encriptar{
-    width: 300px;
-    height: 200px;
+.container-encriptar {
+    width: 100%;
+    max-width: 400px;
 }
 
-.texto-encriptar{
-    width: 300px;
+.texto-encriptar {
+    width: 100%;
     height: 200px;
-    border: none;
-    background-color: #522258;
-    font-size: 26px;
+    border: 2px solid var(--complement2);
+    background-color: var(--primary);
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    resize: none;
 }
 
-.container-encriptado{
-    width: 300px;
+.container-encriptado {
+    width: 100%;
+    max-width: 400px;
     height: 100px;
     padding: 15px;
     display: flex;
     flex-direction: column;
-}
-
-.input{
-    width: 350px;
-    height: 200px;
     background-color: var(--secondary);
-    color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container-btn{
+.container-btn {
     display: flex;
     flex-direction: column;
-    gap : 10px;
-}
-.container-alerta{
-    display: flex;
-    gap: 15px;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
 }
 
-.btn{
-    font-size: 16px;
+.container-alerta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap:10px
+}
+.btn {
+    font-size: 1rem;
     color: aliceblue;
     background-color: var(--complement1);
     padding: 15px;
     border: none;
-    border-radius: 25px;
-    width: 350px;
+    border-radius: var(--border-radius);
+    width: 100%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--complement2);
+}
+
+@media (min-width: 768px) {
+    /* Tablet */
+    body {
+        width: 90%;
+        max-width: 768px;
+    }
+
+    .container {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .container-encriptar, .container-encriptado {
+        width: 80%;
+    }
+
+    .container-btn {
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80%;
+        max-width: none;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+    }
+    .btn {
+        width: 48%;
+        font-size: 1.2rem;
+    }
+
+    .texto-encriptar {
+        font-size: 1.4rem;
+    }
+}
+
+#btn-copiar {
+    font-size: 1.4rem;
+    padding: 15px;
+    background-color: var(--complement2);
+    border: none;
+    border-radius: var(--border-radius);
+    width: 100%;
+    color: aliceblue;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btn-copiar:hover {
+    background-color: var(--complement1);
 }

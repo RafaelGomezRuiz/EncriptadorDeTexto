@@ -2,7 +2,10 @@ let textoEncriptado = '';
 let messaje = document.getElementById('mensaje');
 btnEncriptar = document.getElementById('btn-encriptar');
 btnDesencriptar = document.getElementById('btn-desencriptar');
+btnCopiar = document.getElementById('btn-copiar');
+
 labelMensajeEncriptado = document.getElementById('mensaje-encriptado');
+
 
 
 let limpiarInput = () => {
@@ -12,16 +15,18 @@ let limpiarInput = () => {
 let textoValido = (mensaje) => {
     if (mensaje == "") {
         labelMensajeEncriptado.innerText = `No has introducido el texto`;
+        btnCopiar.style.display='none';
         return false;
     }
     else if(hayCaracteresEspecialesMayusculas(mensaje)){
+        btnCopiar.style.display='none';
         return false;
     }
     return true;
 }
 
 let hayCaracteresEspecialesMayusculas = (texto) => {
-    const paramns =/[^a-zA-Z\s]/;
+    const paramns =/[^a-zA-Z0-9\s]/;
     if(paramns.test(texto)){
         labelMensajeEncriptado.innerText = `No puedes introducir caracteres especiales, ni mayusculas`;
         return true;
@@ -52,40 +57,35 @@ let encriptarTexto = (mensaje) => {
                 break;
         }
     }
-    labelMensajeEncriptado.innerText = textoEncriptado;
+    labelMensajeEncriptado.innerText = `${textoEncriptado}`;
 }
 
 let desencriptarTexto = (mensaje) => {
-    textoEncriptado='';
-    for (let i = 0; i < mensaje.length; i++) {
-        console.log(mensaje[i]+mensaje[i+1]);
-        if((mensaje[i]+mensaje[i+1])==="ai") {
-                textoEncriptado += 'a';}
-        else if((mensaje[i]+mensaje[i+1]+mensaje[i+2]+mensaje[i+3])=='imes'){
-            textoEncriptado += 'e';
-        }
-        else if((mensaje[i]+mensaje[i+1])==='ai'){
-            textoEncriptado += 'i';
-        }
-        else if((mensaje[i]+mensaje[i+1]+mensaje[i+2]+mensaje[i+3])=='ober'){
-            textoEncriptado += 'o';
-        }
-        else if((mensaje[i]+mensaje[i+1]+mensaje[i+2]+mensaje[i+3])=='ufat'){
-            textoEncriptado += 'u';
-        }
-        else{
-            console.log('klk');
-            textoEncriptado += mensaje[i];
+    let textoDesencriptado = mensaje
+        .replace(/ai/g, 'a')
+        .replace(/enter/g, 'e')
+        .replace(/imes/g, 'i')
+        .replace(/ober/g, 'o')
+        .replace(/ufat/g, 'u');
+
+    labelMensajeEncriptado.innerText = `${textoDesencriptado}`;
+}
+
+    const copiarTextoEncriptado = async () => {
+        try {
+        await navigator.clipboard.writeText(labelMensajeEncriptado.innerText);
+        console.log('Content copied to clipboard');
+        } catch (err) {
+        console.error('Failed to copy: ', err);
         }
     }
-    labelMensajeEncriptado.innerText = textoEncriptado;
-}
 
 btnEncriptar.addEventListener('click', e => {
     e.preventDefault();
     if (textoValido(messaje.value)) {
         encriptarTexto(messaje.value);
         limpiarInput();
+        btnCopiar.style.display="block"
     }
 })
 
@@ -94,5 +94,12 @@ btnDesencriptar.addEventListener('click', e => {
     if (textoValido(messaje.value)) {
         desencriptarTexto(messaje.value);
         limpiarInput();
+        btnCopiar.style.display="block"
     }
+})
+
+btnCopiar.addEventListener('click',copiarTextoEncriptado);
+
+addEventListener("DOMContentLoaded",(event)=>{
+    btnCopiar.style.display='none';
 })
