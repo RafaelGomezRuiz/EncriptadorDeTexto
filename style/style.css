@@ -30,15 +30,18 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
     gap: 20px;
 }
+
 .container-encriptar{
     width: 300px;
-    height: 100px;
+    height: 200px;
 }
 
 .texto-encriptar{
+    width: 300px;
+    height: 200px;
     border: none;
     background-color: #522258;
     font-size: 26px;
@@ -63,6 +66,10 @@ body{
     display: flex;
     flex-direction: column;
     gap : 10px;
+}
+.container-alerta{
+    display: flex;
+    gap: 15px;
 }
 
 .btn{

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <title>Encriptador</title>
 </head>
 <body>
@@ -12,19 +13,18 @@
     </header>
     <main class="container">
         <div class="container-encriptar">
-            <input id="mensaje" class="texto-encriptar" placeholder="Ingresa el texto a encriptar.."></input>
+            <textarea id="mensaje" class="texto-encriptar" placeholder="Ingresa el texto a encriptar.."></textarea>
         </div>
         <div class="container-btn">
-            <div>
-                <i></i>
+            <div class="container-alerta">
+                <i class="bi bi-eye"></i>
                 <p>Solo letras minusculas y sin acentos</p>
             </div>
             <button id="btn-encriptar" class="btn">Encriptar</button>
             <button id="btn-desencriptar" class="btn">Desencriptar</button>
         </div>
         <div class="container-encriptado">
-            <label id="mensaje-encriptado">klk</label>
-            <label>klk</label>
+            <label id="mensaje-encriptado">klk<br>Esperando para mostrar el resultado</label>
         </div>
     </main>
     <script src="script.js"></script>
